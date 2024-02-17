@@ -68,14 +68,18 @@ Item (Class)
 
 Food (Class)
 
+    foodID
     name
+    price
 
 CurativeFood (extending Food)
 
+    curativeFoodID
     hpHeal
 
 ProGrowthFood (extending Food)
 
+    proGrowthFoodID
     expPromotion
 
 Battle (Class)
