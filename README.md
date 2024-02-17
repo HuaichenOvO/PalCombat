@@ -107,20 +107,5 @@ Battle (Class)
 - Can a player view other players' battle history?
 - After a player accomplished feeding all the Pals to the highest level, can the player still earn and buy items?
 
-## User Stories
-
-### Dimensions
-- Values game mechanisms vs Values game arts
-- Loves socializing in games vs Loves exploring the game world
-- Achievement chasers vs Freelancers
-- Explicit players vs Implicit players (whether they know how their actions can change the game world)
-
-The last dimension is based on [Wiki of Tanyu](http://wiki.tanyu.mobi/doku.php/)
-
-Two possible dimensions:
-
-Mechanisms vs Art and Socializing vs Game Exploring
-
-
 ## Mockups & UML Design
 [See the Google Doc](https://docs.google.com/document/d/1jo_i-8mBXh_UKbRzhL__3K6HnCajc-bX-I9IN5g1A4E/edit?usp=sharing)
