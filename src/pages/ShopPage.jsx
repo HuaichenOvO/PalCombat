@@ -1,32 +1,40 @@
-import "./App.css"
-import ReactDOM from 'react-dom'
+import "./App.css";
+import PropTypes from "prop-types";
 import React, { Component } from "react";
-import BaseTemplate from '../templates/BaseTemplate'
+import UserItems from '../fragments/UserItems.jsx'
+import NavBar from "../fragments/NavBar";
 
 export default class ShopPage extends Component {
-    state = {}
+    constructor(props) {
+        super(props)
+    }
+
+
     render() {
+        let dislpayProfile = `Player: ${this.props.value.userName} | Coins: ${this.props.value.coins}`;
+
         return (
             <>
-                <BaseTemplate>
-                    <h1>Shop Page!</h1>
-                    <section>
-                        <div className="row">
-                            <div className="col-md-4 col-12">
-                                {/* <CreatePromptForm
-                                    onCreateInteraction={this.onCreateInteraction}
-                                /> */}
-                                <h2>Available Items</h2>
+                <NavBar pageName={'ShopPage'} displayText={dislpayProfile} />
 
-                            </div>
-                            <div className="col-md-8 col-12">
-                                <h2>Coins</h2>
+                <section>
+                    <div className="row">
+                        <div className="col-md-8 col-12">
+                            <h2>The greatest store in PalWorld!</h2>
 
-                            </div>
                         </div>
-                    </section>
-                </BaseTemplate>
+                        <div className="col-md-4 col-12">
+                            <UserItems items={this.props.value.items} />
+
+                        </div>
+                    </div>
+                </section>
             </>
         );
     }
+}
+
+ShopPage.propTypes = {
+    value: PropTypes.object.isRequired,
+    onClickBehavior: PropTypes.func.isRequired,
 }

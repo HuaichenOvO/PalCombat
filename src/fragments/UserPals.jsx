@@ -27,7 +27,6 @@ export default class UserPals extends Component {
                         ))}
                     </div>
                 </div>
-                {/* <button onClick={this.props.onClickAddCoin}>Add Coin</button> */}
             </>
         );
     }
@@ -35,6 +34,6 @@ export default class UserPals extends Component {
 
 UserPals.propTypes = {
     // GPT prompt: propTypes format
-    Pals: PropTypes.arrayOf(Pal).isRequired,
+    Pals: PropTypes.array.isRequired,
     // onClickAddCoin: PropTypes.func.isRequired,
 };

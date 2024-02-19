@@ -12,7 +12,7 @@ export default class UserItems extends Component {
         return (
             <>
                 <div className="col-md-8">
-                    <h2>Items</h2>
+                    <h2>Availble Items</h2>
                     <div className='row'>
                         {this.props.items.map((it, index) => (
                             <div className="card" style={{ padding: '7px', width: "10rem" }} key={index}>
@@ -34,5 +34,6 @@ export default class UserItems extends Component {
 
 UserItems.propTypes = {
     // GPT prompt: propTypes format
-    items: PropTypes.arrayOf(Item).isRequired,
+    // items: PropTypes.arrayOf(Item).isRequired,
+    items: PropTypes.array.isRequired,
 };

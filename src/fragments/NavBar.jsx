@@ -1,34 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
-      // <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-      //   <div class="container-fluid">
-      //     <a class="navbar-brand" href="#">PalCombat - {/*this.props.userName */}</a>
-      //     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      //       <span class="navbar-toggler-icon"></span>
-      //     </button>
-      //     <div class="collapse navbar-collapse" id="navbarText">
-      //       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      //         <li class="nav-item">
-      //           <a class="nav-link active" aria-current="page" href="/">Profile</a>
-      //         </li>
-      //         <li class="nav-item">
-      //           <a class="nav-link active" aria-current="page" href="/shop">Shop</a>
-      //         </li>
-      //         <li class="nav-item">
-      //           <a class="nav-link active" aria-current="page" href="/battle">Battle</a>
-      //         </li>
-      //       </ul>
-      //     </div>
-      //   </div>
-      // </nav>
       <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            PalCombat - {/*this.props.userName */}
+            PalCombat - {this.props.pageName} | {this.props.displayText}
           </a>
           <button
             className="navbar-toggler"
@@ -44,19 +28,37 @@ class NavBar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                {/* <a className="nav-link active" aria-current="page" href="/">
                   Profile
-                </a>
+                </a> */}
+                <Link
+                  className="nav-link active"
+                  to={{
+                    pathname: "/",
+                  }}
+                >Profile</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/shop">
+                {/* <a className="nav-link active" aria-current="page" href="/shop">
                   Shop
-                </a>
+                </a> */}
+                <Link
+                  className="nav-link active"
+                  to={{
+                    pathname: "/shop",
+                  }}
+                >Shop</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/battle">
+                {/* <a className="nav-link active" aria-current="page" href="/battle">
                   Battle
-                </a>
+                </a> */}
+                <Link
+                  className="nav-link active"
+                  to={{
+                    pathname: "/battle",
+                  }}
+                >Battle</Link>
               </li>
             </ul>
           </div>
@@ -69,6 +71,7 @@ class NavBar extends React.Component {
 
 export default NavBar;
 
-// BaseTemplate.propTypes = {
-//   userName: PropTypes.string.isRequired,
-// };
+NavBar.propTypes = {
+  pageName: PropTypes.string.isRequired,
+  displayText: PropTypes.string.isRequired,
+};

@@ -1,17 +1,26 @@
 import "./App.css"
-import ReactDOM from 'react-dom';
 import React, { Component } from "react";
-import BaseTemplate from "../templates/BaseTemplate";
+import PropTypes from "prop-types";
+import NavBar from "../fragments/NavBar";
 
 export default class BattlePage extends Component {
-    state = {}
+    constructor(props) {
+        super(props)
+    }
+
     render() {
+        let dislpayProfile = `Player: ${this.props.value.userName} | Coins: ${this.props.value.coins}`;
         return (
             <>
-                <BaseTemplate>
-                    <h1>Battle Page!</h1>
-                </BaseTemplate>
+                <NavBar pageName={'Battle !'} displayText={dislpayProfile} />
+                <button onClick={this.props.onClickBehavior}>Add Coin</button>
+
             </>
         );
     }
+}
+
+BattlePage.propTypes = {
+    value: PropTypes.object.isRequired,
+    onClickBehavior: PropTypes.func.isRequired,
 }
