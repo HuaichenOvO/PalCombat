@@ -1,30 +1,51 @@
 import React, { Component } from 'react'
-import Item from '../modes/Item.js'
+import PropTypes from "prop-types";
+import StaticItems from '../modes/StaticItems.js'
+import StoreItem from '../modes/StoreItem.js'
 
 
-export default class UserItems extends Component {
+export default class ShopItems extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        let tmpItems = [];
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(1), 8));
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(2), 5));
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(3), 3));
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(4), 10));
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(5), 2));
+        tmpItems.push(new StoreItem(StaticItems.getItemByID(6), 10));
 
+        // this.itemArray = tmpItems;
+
+        this.state = {
+            itemArray: tmpItems,
         }
     }
+
+    // listener = (e) => {
+    //     const tPrice = e.target.parentNode.querySelector('p').textContent;
+    //     // const textContent = e.target.textContent;
+    //     const tKey = e.target.getAttribute('buy-id');
+    //     console.log(`Price is ${tPrice}, content is ${tKey}`);
+    // };
 
     render() {
         return (
             <>
+                <h2>The greatest store in PalWorld!</h2>
                 <div className="col-md-8">
-                    <h2>Items</h2>
                     <div className='row'>
-                        {this.state.items.map((it, index) => (
-                            <div className="card" style={{ padding: '7px', width: "10rem" }} key={index}>
+                        {this.state.itemArray.map((it, index) => (
+                            <div className="card" style={{ padding: '7px', width: "10rem" }} key={it.item.id}>
                                 <div className="card-body">
-                                    <img src={it.image} className="card-img-top" alt="..." width={"8rem"} />
-                                    <h5 className="card-title">{it.name}</h5>
+                                    <img src={it.item.image} className="card-img-top" alt="..." width={"8rem"} />
+                                    <h6 className="card-text">{it.item.name}</h6>
+                                    {it.item.description}
                                     <p className="card-text">
-                                        {it.description}
+                                        Price: {it.price}
                                     </p>
+                                    <button onClick={this.props.buyBehavior} buy-id={it.item.id}>Purchase</button>
                                 </div>
                             </div>
                         ))}
@@ -33,4 +54,8 @@ export default class UserItems extends Component {
             </>
         );
     }
+}
+
+ShopItems.propTypes = {
+    buyBehavior: PropTypes.func.isRequired,
 }

@@ -13,7 +13,7 @@ export default class BattlePage extends Component {
         return (
             <>
                 <NavBar pageName={'Battle !'} displayText={dislpayProfile} />
-                <button onClick={this.props.onClickBehavior}>Add Coin</button>
+                <button onClick={this.props.onClickBehavior}>Battle!</button>
 
             </>
         );

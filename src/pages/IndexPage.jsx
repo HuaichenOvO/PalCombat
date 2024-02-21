@@ -6,8 +6,6 @@ import UserItems from '../fragments/UserItems.jsx'
 import UserPals from "../fragments/UserPals.jsx";
 import NavBar from "../fragments/NavBar";
 
-import Item from "../modes/Item.js";
-import Pal from "../modes/Pal.js";
 
 
 class IndexPage extends Component {
@@ -40,5 +38,5 @@ export default IndexPage;
 
 IndexPage.propTypes = {
   value: PropTypes.object.isRequired,
-  onClickBehavior: PropTypes.func.isRequired,
+  // onClickBehavior: PropTypes.func.isRequired,
 }

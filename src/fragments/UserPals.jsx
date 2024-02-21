@@ -15,7 +15,7 @@ export default class UserPals extends Component {
                     <h2>Pals</h2>
                     <div className='row'>
                         {this.props.Pals.map((p, index) => (
-                            <div className="card" style={{ width: "10rem" }} key={index}>
+                            <div className="card" style={{ width: "10rem" }} key={p.id}>
                                 <div className="card-body">
                                     <img src={p.image} className="card-img-top" alt="..." width={"8rem"} />
                                     <h5 className="card-title">{p.name}</h5>

@@ -2,6 +2,7 @@ import "./App.css";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import UserItems from '../fragments/UserItems.jsx'
+import ShopItems from '../fragments/ShopItems.jsx'
 import NavBar from "../fragments/NavBar";
 
 export default class ShopPage extends Component {
@@ -20,7 +21,7 @@ export default class ShopPage extends Component {
                 <section>
                     <div className="row">
                         <div className="col-md-8 col-12">
-                            <h2>The greatest store in PalWorld!</h2>
+                            <ShopItems buyBehavior={this.props.buyBehavior} />
 
                         </div>
                         <div className="col-md-4 col-12">
@@ -36,5 +37,5 @@ export default class ShopPage extends Component {
 
 ShopPage.propTypes = {
     value: PropTypes.object.isRequired,
-    onClickBehavior: PropTypes.func.isRequired,
+    buyBehavior: PropTypes.func.isRequired,
 }

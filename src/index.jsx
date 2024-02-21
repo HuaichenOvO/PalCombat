@@ -8,8 +8,9 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import ShopPage from './pages/ShopPage.jsx';
 import BattlePage from './pages/BattlePage.jsx';
 
-import Item from "./modes/Item.js";
+import UserItem from "./modes/UserItem.js";
 import Pal from "./modes/Pal.js";
+import StaticItems from './modes/StaticItems.js';
 
 
 class App extends Component {
@@ -17,18 +18,24 @@ class App extends Component {
     super()
 
     let tmpItems = [];
-    let item1 = new Item(1, '_item/LoreStoreAegisShield.webp', "Lore's Shield", "Add HP by 50");
-    let item2 = new Item(2, '_item/Sword_icon.webp', "Kiri's Sword", "Add ATK by 5");
-    let item3 = new Item(3, '_item/1231.jpg', "Laaarge Chicken Leg", "Recover full HP");
-    let item4 = new Item(4, '_item/Rocket_icon.webp', "Sareek's Death Missile", "Add ATK by 8");
-    let item5 = new Item(5, '_item/images.jpg', "Mama's Fired Egg", "Recover HP by 70");
-    let item6 = new Item(6, '_item/Schematic_icon.webp', "The Future Magic Book", "Reduce MP by 1");
-    tmpItems.push(item1);
-    tmpItems.push(item2);
-    tmpItems.push(item3);
-    tmpItems.push(item4);
-    tmpItems.push(item5);
-    tmpItems.push(item6);
+
+    StaticItems.Items.map(
+      (sItem) => {
+        tmpItems.push(new UserItem(sItem, 0));
+      }
+    );
+
+    tmpItems[0].addNumber(2);
+    tmpItems[1].addNumber(1);
+    tmpItems[2].addNumber(5);
+    tmpItems[4].addNumber(6);
+
+    // tmpItems.map(
+    //   (it) => {
+    //     // console.log(it.item.id);
+    //     console.log(tmpItems.length);
+    //   }
+    // );
 
     let tmpPals = [];
     let Pal1 = new Pal(1, '_pal/9w0g9yubrlic1.webp', "Fire Cat - Abby", "recover HP by 0.2*HP",
@@ -53,8 +60,25 @@ class App extends Component {
 
   addCoin = () => {
     console.log("addCoin is called!");
-    this.setState({ coins: this.state.coins + 1 });
+    this.setState({ coins: this.state.coins + 10 });
   }
+
+  buyButtonListener = (e) => {
+    const tPriceText = e.target.parentNode.querySelector('p').textContent;
+    const tPrice = parseInt(tPriceText.replace(/^[^\d]+/, ''));
+    const tKey = e.target.getAttribute('buy-id');
+
+    if (this.state.coins >= tPrice) {
+      let tmpItems = this.state.items;
+      tmpItems[tKey - 1].addNumber(1);
+
+      console.log(`Price is ${tPrice}, coins is ${0 + this.state.coins}, rest of coins: ${this.state.coins - tPrice}`);
+      this.setState({ items: tmpItems, coins: (this.state.coins - tPrice) });
+    }
+    else {
+      window.alert("You do not have enough coins!");
+    }
+  };
 
   initRouter = () => {
     let value = {
@@ -64,7 +88,7 @@ class App extends Component {
       Pals: this.state.Pals
     };
 
-    console.log("initRouter | ", value.coins);
+    // console.log("initRouter | ", value.coins);
 
     const router = createBrowserRouter([
       {
@@ -73,11 +97,11 @@ class App extends Component {
       },
       {
         path: "/shop",
-        element: <ShopPage value={value} onClickBehavior={this.addCoin} />,
+        element: <ShopPage value={value} buyBehavior={this.buyButtonListener} />,
       },
       {
         path: "/",
-        element: <IndexPage value={value} onClickBehavior={this.addCoin} />,
+        element: <IndexPage value={value} />,
         errorElement: <ErrorPage />,
       },
     ]);
