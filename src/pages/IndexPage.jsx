@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import UserItems from '../fragments/UserItems.jsx'
 import UserPals from "../fragments/UserPals.jsx";
-import NavBar from "../fragments/NavBar";
+import NavBar from "../fragments/NavBar.jsx";
 
 
 

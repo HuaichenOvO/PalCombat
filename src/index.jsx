@@ -8,8 +8,8 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import ShopPage from './pages/ShopPage.jsx';
 import BattlePage from './pages/BattlePage.jsx';
 
-import UserItem from "./modes/UserItem.js";
 import Pal from "./modes/Pal.js";
+import UserItem from "./modes/UserItem.js";
 import StaticItems from './modes/StaticItems.js';
 
 
@@ -41,7 +41,7 @@ class App extends Component {
     let Pal1 = new Pal(1, '_pal/9w0g9yubrlic1.webp', "Fire Cat - Abby", "recover HP by 0.2*HP",
       140, 7, 12);
     let Pal2 = new Pal(2, '_pal/a4u7hzubrlic1.webp', "Balloon Sheep - Krute",
-      `Skill: conduct a critical hit that gives damage of 4*ATK.
+      `conduct a critical hit that gives damage of 4*ATK.
           Each time Krute release the skill, increase the
           skill's damage by 1*ATK`,
       70, 3, 1
@@ -54,9 +54,12 @@ class App extends Component {
       coins: 10,
       items: tmpItems,
       Pals: tmpPals,
+      history: [],
     }
 
   }
+
+  // initItems
 
   addCoin = () => {
     console.log("addCoin is called!");
@@ -80,12 +83,17 @@ class App extends Component {
     }
   };
 
+  addBattleHistory = (newHistory) => {
+    this.setState({ history: [newHistory, ...this.state.history,] })
+  }
+
   initRouter = () => {
     let value = {
       userName: this.state.userName,
       coins: this.state.coins,
       items: this.state.items,
-      Pals: this.state.Pals
+      Pals: this.state.Pals,
+      history: this.state.history,
     };
 
     // console.log("initRouter | ", value.coins);
@@ -93,7 +101,7 @@ class App extends Component {
     const router = createBrowserRouter([
       {
         path: "/battle",
-        element: <BattlePage value={value} onClickBehavior={this.addCoin} />,
+        element: <BattlePage value={value} addCoin={this.addCoin} addBattleHistory={this.addBattleHistory} />,
       },
       {
         path: "/shop",
